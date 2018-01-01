@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:title="Server IP"
+        android:key="server_ip"
+        android:summary="@string/value_ip_address"></EditTextPreference>
+    <EditTextPreference android:title="Database"
+        android:key="database_name"
+        android:summary="@string/value_database_name"></EditTextPreference>
+    <EditTextPreference android:title="User login"
+        android:key="user_login"
+        android:summary="@string/value_user_login"></EditTextPreference>
+    <EditTextPreference android:title="User password"
+        android:key="user_password"
+        android:summary="@string/value_user_passord"></EditTextPreference>
+</PreferenceScreen>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ru.ostgard.sensordb.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/main_background"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:padding="5dp">
+<!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Параметры датчика"
+                android:typeface="sans"
+                android:textSize="35sp"
+                android:textColor="#00aa55"
+                android:textStyle="bold"
+                android:gravity="center" />
+-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Отделение"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/light_text"
+                    android:textSize="15dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinner_department"
+                    android:textColor="@color/white_text"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/light_text"
+                    android:hint="Отделение"
+                    android:background="@color/color_green"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    android:nextFocusDown="@+id/spinner_subdepartment">
+                </Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Линия"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/light_text"
+                    android:textSize="15dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinner_subdepartment"
+                    android:textColor="@color/white_text"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/light_text"
+                    android:hint="Линия"
+                    android:background="@color/color_green"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    android:nextFocusDown="@+id/edtmachine">
+                </Spinner>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Машина"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="K123-A45"
+                        android:textSize="20sp"
+                        android:id="@+id/edtmachine"
+                        android:nextFocusDown="@+id/edtnewnumber"/>
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Новый №"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="number"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="--------"
+                        android:textSize="20sp"
+                        android:id="@+id/edtnewnumber"
+                        android:nextFocusDown="@+id/edtoldnumber"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Старый №"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="------"
+                        android:textSize="20sp"
+                        android:id="@+id/edtoldnumber"
+                        android:nextFocusDown="@+id/edtschemenumber"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="На схеме"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="-----"
+                        android:textSize="20sp"
+                        android:id="@+id/edtschemenumber"
+                        android:nextFocusDown="@+id/spinner_sensortype"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:weightSum="24">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Тип датчика"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/spinner_sensortype"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:textColorHint="@color/light_text"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:textSize="20sp"
+                        android:nextFocusDown="@+id/spinner_rangetype">
+                    </Spinner>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Единицы"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/spinner_rangetype"
+                        android:textColor="@color/light_text"
+                        android:textStyle="bold"
+                        android:textColorHint="@color/white_text"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:textSize="20sp"
+                        android:nextFocusDown="@+id/edtminrange">
+                    </Spinner>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Мин."
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="0"
+                        android:textSize="20sp"
+                        android:id="@+id/edtminrange"
+                        android:nextFocusDown="@+id/edtmaxrange"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Макс."
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_text"
+                        android:textSize="15dp"/>
+
+                    <EditText
+                        android:textColorHint="@color/light_text"
+                        android:colorControlNormal="#ffffff"
+                        android:colorControlActivated="#4a7dce"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:maxLines="1"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:textColor="@color/white_text"
+                        android:textStyle="bold"
+                        android:background="@color/color_green"
+                        android:padding="5dp"
+                        android:hint="100"
+                        android:textSize="20sp"
+                        android:id="@+id/edtmaxrange"
+                        android:nextFocusDown="@+id/edtvendor"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <EditText
+                android:textColorHint="@color/light_text"
+                android:colorControlNormal="#ffffff"
+                android:colorControlActivated="#4a7dce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textColor="@color/white_text"
+                android:textStyle="bold"
+                android:background="@color/color_green"
+                android:padding="5dp"
+                android:hint="Производитель"
+                android:textSize="20sp"
+                android:id="@+id/edtvendor"
+                android:nextFocusDown="@+id/edtmodel"/>
+
+            <EditText
+                android:textColorHint="@color/light_text"
+                android:colorControlNormal="#ffffff"
+                android:colorControlActivated="#4a7dce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="Модель"
+                android:textColor="@color/white_text"
+                android:textStyle="bold"
+                android:background="@color/color_green"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/edtmodel"
+                android:nextFocusDown="@+id/edtserial"/>
+
+            <EditText
+                android:textColorHint="@color/light_text"
+                android:colorControlNormal="#ffffff"
+                android:colorControlActivated="#4a7dce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:inputType="textCapCharacters"
+                android:hint="Серийный номер"
+                android:textColor="@color/white_text"
+                android:textStyle="bold"
+                android:background="@color/color_green"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/edtserial"
+                android:nextFocusDown="@+id/edtdescription"/>
+
+            <EditText
+                android:textColorHint="@color/light_text"
+                android:colorControlNormal="#ffffff"
+                android:colorControlActivated="#4a7dce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:hint="Расположение"
+                android:textColor="@color/white_text"
+                android:textStyle="bold"
+                android:background="@color/color_green"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/edtdescription" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/btnInsertSensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="#00aa55"
+
+                    android:text="Добавить датчик"
+                    android:textColor="@color/white_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/pbbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+
