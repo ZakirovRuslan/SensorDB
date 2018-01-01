@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,11 +20,7 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public String valueDepartement, valueSubdepartement, valueMachine, valueNewNumber, valueOldNumber;
     public String valueLocalNumber, valueSensorType, valueUnits, valueMinRange, valueMaxRange;
     public String valueSensorVendor, valueSensorModel,valueSensorSerialNumber, valueSensorLocationDescription, valueUserName;
-
-    //String[] spinner_data_sensortype = {"Манометр","Термометр","Датчик Давления","Датчик Температуры","Датчик Проводимости","Датчик Концентрации","Датчик Озона"};
-    //String[] spinner_data_sensorrange_manometer = {"Bar","mBar","PSi"};
 
     ConnectionClass connectionClass;
     Spinner spnrDepartement,spnrSubDepartement, spnrSensorType, spnrSensorUnits;
@@ -51,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayAdapter<String> setSubSpinner1(String[] arrStrings)
     {
-        ArrayAdapter<String> adaptStrings = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,arrStrings);
+        ArrayAdapter<String> adaptStrings = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrStrings);
         adaptStrings.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adaptStrings;
     }
@@ -70,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-    //    final ArrayAdapter<String> adapterDepartement;
-    //    final ArrayAdapter<String> adapterSubdep;
-    //    final ArrayAdapter<String> adapterUnits;
 
         valueDepartement = "default";
         valueSubdepartement = "default";
@@ -109,25 +97,25 @@ public class MainActivity extends AppCompatActivity {
         //All objects on the activity
         connectionClass.setConnectionSettings(temp_IP,temp_DB,temp_Login,temp_Pass);
 
-        spnrDepartement = (Spinner) findViewById(R.id.spinner_department);
-        spnrSubDepartement = (Spinner) findViewById(R.id.spinner_subdepartment);
-        spnrSensorType = (Spinner) findViewById(R.id.spinner_sensortype);
-        spnrSensorUnits = (Spinner) findViewById(R.id.spinner_rangetype);
+        spnrDepartement = findViewById(R.id.spinner_department);
+        spnrSubDepartement = findViewById(R.id.spinner_subdepartment);
+        spnrSensorType = findViewById(R.id.spinner_sensortype);
+        spnrSensorUnits =  findViewById(R.id.spinner_rangetype);
 
-        edtMachineName =(EditText) findViewById(R.id.edtmachine);
-        edtNewNumber = (EditText) findViewById(R.id.edtnewnumber);
-        edtOldNumber = (EditText) findViewById(R.id.edtoldnumber);
-        edtSchemeNumber = (EditText) findViewById(R.id.edtschemenumber);
-        edtMinRange = (EditText) findViewById(R.id.edtminrange);
-        edtMaxRange = (EditText) findViewById(R.id.edtmaxrange);
-        edtVendor = (EditText) findViewById(R.id.edtvendor);
-        edtModel = (EditText) findViewById(R.id.edtmodel);
-        edtSerialNumber = (EditText) findViewById(R.id.edtserial);
-        edtSensorLocation = (EditText) findViewById(R.id.edtdescription);
+        edtMachineName =findViewById(R.id.edtmachine);
+        edtNewNumber = findViewById(R.id.edtnewnumber);
+        edtOldNumber =  findViewById(R.id.edtoldnumber);
+        edtSchemeNumber =  findViewById(R.id.edtschemenumber);
+        edtMinRange =  findViewById(R.id.edtminrange);
+        edtMaxRange =  findViewById(R.id.edtmaxrange);
+        edtVendor = findViewById(R.id.edtvendor);
+        edtModel = findViewById(R.id.edtmodel);
+        edtSerialNumber =  findViewById(R.id.edtserial);
+        edtSensorLocation = findViewById(R.id.edtdescription);
 
-        btnInsertSensor = (Button) findViewById(R.id.btnInsertSensor);
+        btnInsertSensor =  findViewById(R.id.btnInsertSensor);
 
-        pbbar = (ProgressBar) findViewById(R.id.pbbar);
+        pbbar =  findViewById(R.id.pbbar);
         pbbar.setVisibility(View.GONE);
 
         btnInsertSensor.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    temp_IP = "192.168.110.40";//"No name defined" is the default value.
+                    temp_IP = "192.168.110.40";
                     temp_DB = "db_production";
                     temp_Login = "serviceman";
                     temp_Pass = "12321";
@@ -173,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 String sqlRequestInsert;
 
                 sqlRequestInsert = "INSERT INTO["+temp_DB+"].[dbo].[SENSORS]";
-                //sqlRequestInsert = "INSERT INTO SENSOR";
                 sqlRequestInsert = sqlRequestInsert + "([sensor_new_number]";
                 sqlRequestInsert = sqlRequestInsert + ",[sensor_old_number]";
                 sqlRequestInsert = sqlRequestInsert + ",[location_department]";
@@ -189,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 sqlRequestInsert = sqlRequestInsert + ",[measurement_range_min]";
                 sqlRequestInsert = sqlRequestInsert + ",[measurement_range_max]";
                 sqlRequestInsert = sqlRequestInsert + ",[user_who_added]";
-                //sqlRequestInsert = sqlRequestInsert + ",[date_added])
                 sqlRequestInsert = sqlRequestInsert + ")VALUES";
                 sqlRequestInsert = sqlRequestInsert + "('"+valueNewNumber+"'";
                 sqlRequestInsert = sqlRequestInsert + ",N'"+valueOldNumber+"'";
@@ -299,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         String set = prefs.getString("DepStringSet", "object 1,object 2,object 3,object 4");
-        if(set == null||set == "")
+        if(set.equals(""))
         {
             Log.e("ERRO", "Set Departement is empty");
             set = "object 1,object 2,object 3,object 4";
@@ -326,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
 
         String set = prefs.getString("subDepStringSet" + String.valueOf(pos), "object 1,object 2,object 3,object 4");
 
-        if(set == null||set == "")
+        if(set.equals(""))
         {
             Log.e("ERRO", "Set Departement is empty");
             set = "object 1,object 2,object 3,object 4";
@@ -353,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         String set = prefs.getString("SensorTypeStringSet", "object 1,object 2,object 3,object 4");
-        if(set == null||set == "")
+        if(set.equals(""))
         {
             Log.e("ERRO", "Set SensorType is empty");
             set = "object 1,object 2,object 3,object 4";
@@ -380,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
 
         String set = prefs.getString("unitsStringSet" + String.valueOf(pos), "object_1,object_2,object_3,object_4");
 
-        if(set == null||set == "")
+        if(set.equals(""))
         {
             Log.e("ERRO", "Set Units is empty");
             set = "object_1,object_2,object_3,object_4";
@@ -408,13 +394,6 @@ public class MainActivity extends AppCompatActivity {
             pbbar.setVisibility(View.GONE);
             Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
 
-            if(isSuccess) {
-                //Intent i = new Intent(MainActivity.this, GoodConnection.class);
-                //startActivity(i);
-                //Toast.makeText(MainActivity.this,"Good Connection!",Toast.LENGTH_SHORT).show();
-                //finish();
-            }
-
         }
 
         @Override
@@ -424,16 +403,15 @@ public class MainActivity extends AppCompatActivity {
                     Connection con = connectionClass.CONN();
                     if (con == null) {
                         String tStr = connectionClass.actSettings +"\n";
-                        if(connectionClass.actExceptionCLASS != "")
+                        if(!Objects.equals(connectionClass.actExceptionCLASS, ""))
                         {tStr = tStr + "\nClass Exception " + connectionClass.actExceptionCLASS;}
-                        if(connectionClass.actExceptionSQL != "")
+                        if(!Objects.equals(connectionClass.actExceptionSQL, ""))
                         {tStr = tStr + "\nSQL Exception " + connectionClass.actExceptionSQL;}
-                        if(connectionClass.actExceptionE != "")
+                        if(!Objects.equals(connectionClass.actExceptionE, ""))
                         {tStr = tStr + "\nException " + connectionClass.actExceptionSQL;}
                         z = tStr;
 
                     } else {
-                        //String query = "select * from Usertbl where UserId='" + userid + "' and password='" + password + "'";
                         String query = params[0];
                         String checkNumber = "";
 
@@ -466,7 +444,6 @@ public class MainActivity extends AppCompatActivity {
                             int rowCount = 0;
                             while ( checkResult.next() )
                             {
-                                // Process the row.
                                 rowCount++;
                             }
 
@@ -522,16 +499,15 @@ public class MainActivity extends AppCompatActivity {
                 Connection con = connectionClass.CONN();
                 if (con == null) {
                     String tStr = connectionClass.actSettings +"\n";
-                    if(connectionClass.actExceptionCLASS != "")
+                    if(!Objects.equals(connectionClass.actExceptionCLASS, ""))
                     {tStr = tStr + "\nClass Exception " + connectionClass.actExceptionCLASS;}
-                    if(connectionClass.actExceptionSQL != "")
+                    if(!Objects.equals(connectionClass.actExceptionSQL, ""))
                     {tStr = tStr + "\nSQL Exception " + connectionClass.actExceptionSQL;}
-                    if(connectionClass.actExceptionE != "")
+                    if(!Objects.equals(connectionClass.actExceptionE, ""))
                     {tStr = tStr + "\nException " + connectionClass.actExceptionSQL;}
                     z = tStr;
 
                 } else {
-                    //String query = "select * from Usertbl where UserId='" + userid + "' and password='" + password + "'";
                     String query = params[0];
                     Statement stmt = con.createStatement();
 
@@ -559,7 +535,6 @@ public class MainActivity extends AppCompatActivity {
                             String spnrName = "";
 
                         while (rs.next()) {
-                         //   JSONObject rowObject = new JSONObject();
 
 
                             for (int i = 1; i <= columnCount; i++) {
@@ -645,14 +620,12 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
                             }
-                            //Subdepartements.add(tmpSet);
                             if(spnrName.equals("departement"))
                             {
                                 edit.putString("subDepStringSet"+String.valueOf(j), tmpPrefSubdepartementStringArray);
                                 j++;
                             }
 
-    //                        edit.commit();
                             if(spnrName.equals("type"))
                             {
                                 edit.putString("unitsStringSet"+String.valueOf(k), tmpPrefUnitStringArray);
@@ -666,7 +639,6 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                            //edit.clear();
                             edit.putString("DepStringSet", tmpPrefDepartementStringArray);
                             edit.putString("SensorTypeStringSet", tmpPrefTypeStringArray);
                             edit.commit();
