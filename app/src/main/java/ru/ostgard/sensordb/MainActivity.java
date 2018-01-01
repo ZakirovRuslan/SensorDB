@@ -731,7 +731,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             connectionClass.setConnectionSettings(temp_IP,temp_DB,temp_Login,temp_Pass);
-            CheckConnection.execute("select * from test where test=147", "halt!");
+            CheckConnection.execute("select * from test where test=147", "halt!!!");
 
             return true;
         }
