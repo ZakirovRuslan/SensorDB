@@ -1,9 +1,12 @@
 package ru.ostgard.sensordb;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +43,55 @@ public class MainActivity extends AppCompatActivity {
 
     private String temp_IP, temp_DB, temp_Login,temp_Pass;
 
+    public void showInforDialog(Context cnt, String mes, String titleText, boolean okButton, boolean cancelButton, boolean neutralButton)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(cnt);
+
+
+        builder.setTitle(titleText);
+
+
+        builder.setMessage(mes);
+
+
+        //Button One : Yes
+        if(okButton)
+        {
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                 //   Toast.makeText(MainActivity.this, "Yes button Clicked!", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+        if(cancelButton)
+        {
+            //Button Two : No
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                 //   Toast.makeText(MainActivity.this, "No button Clicked!", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
+                }
+            });
+        }
+        if(neutralButton)
+        {
+            //Button Three : Neutral
+            builder.setNeutralButton("I don't care", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                 //   Toast.makeText(MainActivity.this, "Neutral button Clicked!", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
+                }
+            });
+        }
+
+        AlertDialog diag = builder.create();
+        diag.show();
+    }
+
     public ArrayAdapter<String> setSubSpinner1(String[] arrStrings)
     {
         ArrayAdapter<String> adaptStrings = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrStrings);
@@ -50,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-
 
     }
 
@@ -392,7 +442,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String r) {
             pbbar.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
+            showInforDialog(MainActivity.this,r,"Добавление датчика",true,false,false);
 
         }
 
@@ -450,7 +501,8 @@ public class MainActivity extends AppCompatActivity {
                             if(rowCount == 0)
                             {
                                 stmt.executeUpdate(query);
-                                z = "Датчик добавлен";
+                                z = "Датчик " + params[1] +
+                                        "\nдобавлен в базу данных";
                             }
                             else
                             {
@@ -487,7 +539,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String r) {
 
             pbbar.setVisibility(View.GONE);
-            Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
+            showInforDialog(MainActivity.this,r,"Обновление",true,false,false);
             takeSpinnerDepartementData();
             takeSpinnerSensorTypeData();
         }
