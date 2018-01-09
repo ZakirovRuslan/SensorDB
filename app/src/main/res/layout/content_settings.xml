@@ -49,6 +49,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     android:textColorHint="#ffffff"
                     android:background="#5d5d5d"
                     android:padding="10dp"
@@ -58,7 +59,7 @@
                     android:textSize="20sp"
                     android:id="@+id/set_ip_adress"
                     android:nextFocusDown="@+id/set_db_name"
-                    android:maxLines="1"/>
+                    />
 
             </LinearLayout>
 
@@ -80,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:hint="DB name"
+                    android:maxLines="1"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
@@ -87,7 +89,7 @@
                     android:padding="10dp"
                     android:id="@+id/set_db_name"
                     android:nextFocusDown="@+id/set_login"
-                    android:maxLines="1"/>
+                    />
 
             </LinearLayout>
 
@@ -109,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:hint="Login"
+                    android:maxLines="1"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
@@ -116,7 +119,7 @@
                     android:padding="10dp"
                     android:id="@+id/set_login"
                     android:nextFocusDown="@+id/set_password"
-                    android:maxLines="1"/>
+                    />
 
             </LinearLayout>
 
@@ -138,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:hint="Password"
+                    android:maxLines="1"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
@@ -145,7 +149,7 @@
                     android:padding="10dp"
                     android:inputType="textPassword"
                     android:id="@+id/set_password"
-                    android:maxLines="1"/>
+                    />
 
             </LinearLayout>
 
