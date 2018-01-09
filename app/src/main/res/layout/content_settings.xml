@@ -56,7 +56,9 @@
                     android:inputType="number"
                     android:digits="0123456789."
                     android:textSize="20sp"
-                    android:id="@+id/set_ip_adress" />
+                    android:id="@+id/set_ip_adress"
+                    android:nextFocusDown="@+id/set_db_name"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -83,7 +85,9 @@
                     android:textStyle="bold"
                     android:background="#5d5d5d"
                     android:padding="10dp"
-                    android:id="@+id/set_db_name" />
+                    android:id="@+id/set_db_name"
+                    android:nextFocusDown="@+id/set_login"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -110,7 +114,9 @@
                     android:textStyle="bold"
                     android:background="#5d5d5d"
                     android:padding="10dp"
-                    android:id="@+id/set_login" />
+                    android:id="@+id/set_login"
+                    android:nextFocusDown="@+id/set_password"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -138,7 +144,8 @@
                     android:background="#5d5d5d"
                     android:padding="10dp"
                     android:inputType="textPassword"
-                    android:id="@+id/set_password" />
+                    android:id="@+id/set_password"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 

@@ -443,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String r) {
             pbbar.setVisibility(View.GONE);
         //    Toast.makeText(MainActivity.this,r,Toast.LENGTH_SHORT).show();
-            showInforDialog(MainActivity.this,r,"Добавление датчика",true,false,false);
+            showInforDialog(MainActivity.this,r,"Информация",true,false,false);
 
         }
 
@@ -480,12 +480,12 @@ public class MainActivity extends AppCompatActivity {
                             if(rs.next())
                             {
 
-                                z = "Successfull";
+                                z = "Успешное подключение!";
                                 isSuccess=true;
                             }
                             else
                             {
-                                z = "Invalid Credentials";
+                                z = "Ошибка подключения";
                                 isSuccess = false;
                             }
                         }else
