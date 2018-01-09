@@ -46,14 +46,14 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
-                    android:maxLines="1"
                     android:textColorHint="#ffffff"
                     android:background="#5d5d5d"
                     android:padding="10dp"
                     android:hint="IP adress"
+                    android:maxLines="1"
                     android:inputType="number"
                     android:digits="0123456789."
                     android:textSize="20sp"
@@ -78,10 +78,11 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:textSize="20sp"
                     android:hint="DB name"
                     android:maxLines="1"
+                    android:inputType="text"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
@@ -108,10 +109,11 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:textSize="20sp"
                     android:hint="Login"
                     android:maxLines="1"
+                    android:inputType="text"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
@@ -138,15 +140,15 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:textSize="20sp"
                     android:hint="Password"
-                    android:maxLines="1"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textStyle="bold"
                     android:background="#5d5d5d"
                     android:padding="10dp"
+                    android:maxLines="1"
                     android:inputType="textPassword"
                     android:id="@+id/set_password"
                     />
