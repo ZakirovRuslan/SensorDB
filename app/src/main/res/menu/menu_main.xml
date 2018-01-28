@@ -13,6 +13,11 @@
         android:title="@string/action_check_connection"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_scancode"
+        android:orderInCategory="100"
+        android:title="@string/action_scancode"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_update"
         android:orderInCategory="100"
         android:title="@string/action_update"

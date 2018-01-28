@@ -2,6 +2,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_check_connection">Check connection</string>
     <string name="action_update">Update</string>
+    <string name="action_scancode">Scan code</string>
     <string name="app_name">Метрология</string>
     <string name="title_activity_good_connection">GoodConnection</string>
     <string name="title_activity_preferences">PreferencesActivity</string>

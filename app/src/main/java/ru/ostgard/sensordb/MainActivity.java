@@ -1,11 +1,17 @@
 package ru.ostgard.sensordb;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,7 +24,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.google.zxing.client.android.Intents;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CameraPreview;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public String valueDepartement, valueSubdepartement, valueMachine, valueNewNumber, valueOldNumber;
     public String valueLocalNumber, valueSensorType, valueUnits, valueMinRange, valueMaxRange;
     public String valueSensorVendor, valueSensorModel,valueSensorSerialNumber, valueSensorLocationDescription, valueUserName;
+    public String valueScannedBarcode;
 
     ConnectionClass connectionClass;
     Spinner spnrDepartement,spnrSubDepartement, spnrSensorType, spnrSensorUnits;
@@ -109,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        boolean tmpCheckPermission = checkCameraPermission();
+
+        if(tmpCheckPermission)
+        {
+            Log.v("VERB", "Camera permision granted");
+        }else
+        {
+            Log.v("VERB", "Camera permision denied");
+        }
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
 
@@ -299,6 +320,62 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public  boolean checkCameraPermission()
+    {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("ERRO", "Permission is granted");
+                return true;
+
+            } else {
+                Log.v("ERRO","Permission is revoked");
+                ActivityCompat.requestPermissions((Activity) this, new String[]{Manifest.permission.CAMERA}, 1);
+                return false;
+            }
+        }
+        else { // permission is automatically granted on sdk<23 upon installation
+            Log.v("ERRO","Permission is granted");
+            return true;
+        }
+    }
+
+    public String ScanBarcode()
+    {
+        boolean checkPermision = false;
+        String tmpValString;
+        tmpValString = "";
+
+        checkPermision = checkCameraPermission();
+
+        if(checkPermision)
+        {
+            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            scanIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+            scanIntegrator.setPrompt("Scan a barcode");
+            scanIntegrator.setCameraId(0);  // Use a specific camera of the device
+            IntentIntegrator intentIntegrator = scanIntegrator.setBeepEnabled(false);
+            scanIntegrator.setBarcodeImageEnabled(true);
+            scanIntegrator.setOrientationLocked(true);
+            scanIntegrator.initiateScan();
+        }
+
+
+
+        return  tmpValString;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        showInforDialog(MainActivity.this,scanningResult.getContents().toString(),"Сканирование",true,false,false);
+        if(!scanningResult.getContents().toString().equals(""))
+        {
+            edtNewNumber.setText(scanningResult.getContents().toString());
+        }
 
     }
 
@@ -765,6 +842,13 @@ public class MainActivity extends AppCompatActivity {
             boolean tmpBoolValue;
             tmpBoolValue = UpdateAllSpinners();
             return  tmpBoolValue;
+        }
+
+        if (id == R.id.action_scancode) {
+            valueScannedBarcode = "";
+            valueScannedBarcode = ScanBarcode();
+
+            return  true;
         }
 
         return super.onOptionsItemSelected(item);
